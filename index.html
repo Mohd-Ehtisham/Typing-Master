@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Test</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="center">
+            <h1>Welcome To Typing Test <p>Powered by TechGuide360</p></h1>
+            <h2 id='msg'></h2>
+            <br>
+            <textarea name="" id="words" cols="100" rows="10" placeholder="ENTER YOUR TEXT............BEST OF LUCK.."></textarea><br>
+            <button id='btn'>Start</button>
+        </div>
+    </div>
+    <script>
+        const setwords =['Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum, atque.',
+        'repellendus ratione voluptatibus nemo numquam quos hic ducimus architecto eligendi laudantium!',
+        'libero eum ratione enim voluptatibus. Et harum commodi fuga, voluptatum fugiat ea? Est a voluptatibus laudantium rerum, itaque quae officia.'
+        ];
+
+        const msg=document.getElementById("msg");
+        const Typewords=document.getElementById('words');
+        const btn=document.getElementById('btn');
+        let StartTime, endTime;
+        
+        const playGame=()=>{
+            let Rtext = Math.floor(Math.random()*setwords.length);
+            msg.innerText=setwords[Rtext];
+            let date= new Date();
+            StartTime = date.getTime();
+            btn.innerText= "Done";
+        }
+        const endPlay=()=>{
+            let date= new Date();
+            endTime =date.getTime();
+            let ToTime =((endTime-StartTime)/1000);
+            let Tostr=Typewords.value;
+            let wordcount=wordCounter(Tostr);
+            let speed=Math.round((wordcount/ToTime)*60);
+            let Fmsg='Your Speed is '+speed+' words per min';
+            Fmsg+= CompareWords(msg.innerText, Tostr);
+            msg.innerText=Fmsg;
+
+        }
+        const CompareWords=(s1,s2)=>{
+            let w1=s1.split(" ");
+            let w2=s2.split(" ");
+            let co=0;
+
+            w1.forEach(function(item,index){
+                if(item==w2[index]){
+                    co++; 
+                }
+            })
+            return ' and You have Entered '+co+' Correct Words';
+        }
+        const wordCounter=(str)=>{
+            let response=str.split(" ").length;
+            console.log(response);
+            return response;    
+        }
+
+        btn.addEventListener('click',function(){
+            console.log(this); 
+            if(this.innerText =="Start"){
+                Typewords.disabled =false;
+                playGame();
+            }else if(this.innerText=="Done"){
+                Typewords.disabled =true;
+                btn.innerText='Start';
+                endPlay();
+            }
+        })
+    </script>
+</body>
+</html>

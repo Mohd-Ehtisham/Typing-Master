@@ -1,0 +1,32 @@
+*{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+.main{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background: #6454E5;
+}
+h1{
+    color: white;
+}
+p{
+    color:#2ecc72;
+    font-size: small;
+}
+.center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+#btn{
+    padding: 0.4rem;
+    font-size: 2rem;
+    border-radius: 25%;
+}
